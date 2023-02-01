@@ -17,7 +17,7 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-
+// 时间复杂度O(n) , 空间复杂度O(n)  n是两个链表的总元素
 var mergeTwoLists = function(list1, list2) {
 
     if(!list1 && !list2){
