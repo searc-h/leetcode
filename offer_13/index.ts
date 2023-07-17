@@ -11,33 +11,32 @@
 
 function movingCount(m: number, n: number, k: number): number {
 
-    
-   function getSum(n:number){
-        let temp=0;
-        while (n>0){
-            temp+=n%10;
-            n=n/10;
-        }
-        return temp;
-    }
-    
-    let  res=0,i:number,j:number;
-    let dp:number[][] =new Array(n + 1).fill(new Array(m + 1));
-    //dp[i][j]表示当前位置是否可达
-    dp[0][1]=1;
-    for (i=1;i<m+1;i++){
-        for (j=1;j<n+1;j++){
-            let sum=getSum(i-1)+getSum(j-1);
-            if ((dp[i-1][j]==1||dp[i][j-1]==1)&&sum<=k){
-                res++;
-                dp[i][j]=1;
-            }
-        }
-    }
+    function getSum(n:number){
+       let temp=0;
+       temp = n % 10 + Math.floor(n / 10)
+       return temp;
+   }
 
-    return res;
-
-}; \
+   let  res=0,i:number,j:number;
+   let dp:number[][] = []  ;
+   for (i = 0; i <= m; i++) {
+       dp[i] = new Array(n+1).fill(0);
+   }
+   //dp[i][j]表示当前位置是否可达
+   dp[0][1] = 1;
+   
+   for ( i=1;i<=m;i++){
+       for ( j=1;j<=n;j++){
+           let sum=getSum(i-1)+getSum(j-1);
+           
+           if ((dp[i-1][j]==1||dp[i][j-1]==1)&&sum<=k){
+               res++;
+               dp[i][j]=1;
+           }
+       }
+   }
+   return res;
+};
 
 
 /**
