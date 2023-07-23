@@ -38,7 +38,6 @@ function movingCount(m: number, n: number, k: number): number {
    return res;
 };
 
-
 /**
  * 深度优先
  * class Solution {
