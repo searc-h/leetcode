@@ -49,15 +49,28 @@ function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
         InMap.set(inorder[i], i);
     }
 
-
+    /**
+     * 
+     * @param pre_root_idx 此次递归根节点 在 【preorder】中的索引
+     * @param in_left_idx 此次递归左边界 在 【inorder】中的索引
+     * @param in_right_idx 此次递归有边界 在 【inorder】中的索引
+     * @returns 递归
+     */
     function recursive(pre_root_idx: number, in_left_idx: number, in_right_idx : number) {
         if (in_left_idx === in_right_idx) return null
         
-        const tree = new TreeNode(preorder[pre_root_idx])
+        const tree = new TreeNode(preorderCope[pre_root_idx])
         
-        tree.left = 
+        const in_rootIdx = InMap.get(preorderCope[pre_root_idx]) as number  // 根节点在inorder中的索引
+
+        // （根节点在preorder的下标 +1 , 左边界保持不动 ， 右边界为 根节点在inorder中的索引 -1）
+        tree.left = recursive(pre_root_idx + 1  , in_left_idx ,in_rootIdx - 1 ) 
         
-        tree.right = 
+        // 左树的节点数目 ：根节点在inorder的下标 - 左边界
+        const leftLen = in_rootIdx - in_left_idx; 
+        
+        // （根节点在preorder的下标 + 左边树的节点数 + 1 , 左边界根节点在inorder中的索引 + 1 ，左边界保持不动）
+        tree.right = recursive(pre_root_idx  + leftLen + 1  , in_rootIdx + 1 ,in_right_idx )
         
             
         return tree
