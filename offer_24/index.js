@@ -23,3 +23,18 @@
     }
     return cur.next
 };
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ var reverseList = function(head) {
+    let cur = new ListNode(null)
+    while(head != null){
+        let temp = head  
+        head = head.next // 理解区别
+        temp.next = cur.next
+        cur.next = temp
+    }
+    return cur.next
+};
