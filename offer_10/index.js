@@ -15,7 +15,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 // 动态规划
 var fib = function(n) {
     if (n === 0 || n === 1) {
-      return n;
+      return 1;
     }
     const mod = Math.pow(10, 9) + 7;
     const dp = new Array(n + 1);  // 状态
